@@ -5,9 +5,12 @@
     <p> <%= link_to "Create new workout", new_workout_path, class: "btn btn-lg btn-primary" %>
   <% else %>
     <% @workouts.each do |workout| %>
-      <p> <%= link_to workout.date, workout %> </p>
-      <p> <%= workout.workout %> </p>
-    
+    	<% if workout.user = current_user %>
+      		<p> <%= link_to workout.date, workout %> </p>
+      		<p> <%= workout.workout %> </p>
+      	<% else %>
+      		<p> You have no authorization to view this! </p>
+    	<% end %>
       <% end %>
   <% end %>
 
