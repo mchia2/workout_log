@@ -3,11 +3,11 @@ class WorkoutsController < ApplicationController
 	before_action :authenticate_user!, #except: [:index, :show]
 	
 	def index
-		if current_user
+		# if
 			@workouts = current_user.workouts
-		else
-			redirect_to new_user_session_path, notice: 'You are not logged in.'
-		end
+		# else
+		# 	redirect_to new_user_session_path, notice: 'You are not logged in.'
+		# end
 	end
 
 	def show
