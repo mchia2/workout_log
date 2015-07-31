@@ -1,0 +1,18 @@
+<html>
+	
+	<h3 align= "left"> <%= @workout.date %> </h3>
+    <p> <%= @workout.workout %> </p>
+    <p> <%= @workout.mood %></p>
+    <p> <%= @workout.length %></p>
+
+    <h3 align= "left"> Exercises </h3>
+    <%= render @workout.exercises %>
+    <h4 alignn= "left"> Add an exercise </h4>
+    <%= render "exercises/form" %>
+    <%= link_to "Back", root_path %> 
+    <%= link_to "Edit", edit_workout_path(@workout) %>
+    <%= link_to "Delete", workout_path(@workout), method: :delete, data: { confirm: "Are you sure?"} %>
+		
+</html>
+
+

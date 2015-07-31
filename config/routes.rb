@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
+  get 'static_pages/home'
+
   get 'help'    => 'static_pages#help'
   get 'about'   => 'static_pages#about'
   get 'contact' => 'static_pages#contact'
+  get 'home'    => 'static_pages#home'
+  get 'new_workout' => 'workouts#new'
+  get 'workouts' => 'workouts#index'
 
-  root "workouts#index"
+  root "static_pages#home"
   devise_for :users
   devise_scope :user do
   get "login", to: "devise/sessions#new"

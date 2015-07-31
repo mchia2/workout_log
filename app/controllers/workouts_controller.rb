@@ -1,10 +1,13 @@
 class WorkoutsController < ApplicationController
 	before_action :find_workout, only: [:show, :edit, :update, :destroy]
-	before_action :authenticate_user!, except: [:index, :show]
+	before_action :authenticate_user!, #except: [:index, :show]
 	
 	def index
-		@workouts = Workout.all.order("created_at DESC")
-
+		if current_user
+			@workouts = current_user.workouts
+		else
+			redirect_to new_user_session_path, notice: 'You are not logged in.'
+		end
 	end
 
 	def show
@@ -46,6 +49,8 @@ class WorkoutsController < ApplicationController
 	end
 
 	def find_workout
+		# @workout = current_user.workouts
 		@workout = Workout.find(params[:id])
+		#Workout.find(params[:id])
 	end
 end
