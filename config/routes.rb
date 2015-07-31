@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
+  get 'help'    => 'static_pages#help'
+  get 'about'   => 'static_pages#about'
+  get 'contact' => 'static_pages#contact'
 
+  root "workouts#index"
+  devise_for :users
+  devise_scope :user do
+  get "login", to: "devise/sessions#new"
+  end
   resources :workouts do
     resources :exercises
   end
-  root "workouts#index"
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
